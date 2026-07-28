@@ -3,7 +3,10 @@ name: Serv00 自动登录
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 */3 * *"  # 每三天运行一次
+    # 策略1：一月两次，分别在每月的 11号 和 26号 运行。
+    # 故意避开整点，选用奇葩的分钟数（如 43分 和 17分），伪装真人。
+    - cron: "43 5 11 * *"  
+    - cron: "17 14 26 * *" 
   push:
     branches:
       - main
@@ -32,6 +35,13 @@ jobs:
           sudo apt-get install -y curl unzip xvfb libnss3 fonts-liberation
           python -m pip install --upgrade pip
           pip install selenium requests webdriver-manager chromedriver-binary-auto
+
+      # --- 新增：随机延迟步骤，最大延迟 3600 秒（1小时）---
+      - name: 随机延迟执行 (防风控)
+        run: |
+          DELAY=$((RANDOM % 3600))
+          echo "为了防止被 Serv00 风控识别为定时脚本，将随机休眠 $DELAY 秒..."
+          sleep $DELAY
 
       - name: 运行登录脚本
         env:
