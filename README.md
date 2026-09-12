@@ -105,5 +105,12 @@
 
 - **保密性**: Secrets 是敏感信息，请确保不要将它们泄露到公共代码库或未授权的人员。
 - **更新和删除**: 如果需要更新或删除 Secrets，可以通过仓库的 Secrets 页面进行管理。
+- **工作流写权限 (防 60 天失效)**: 为了使脚本每次运行能够自动更新保活时间戳，请在仓库的 `Settings` -> `Actions` -> `General` -> `Workflow permissions` 下选择 **`Read and write permissions`** 并保存。
+
+### 自动化保活状态
+
+<!-- KEEPALIVE_START -->
+> 🕒 **最后自动保活时间**：暂未运行 (UTC+8)
+<!-- KEEPALIVE_END -->
 
 通过以上步骤，你就可以成功将代码 fork 到你的仓库下并运行它了。如果需要进一步的帮助或有其他问题，请随时告知！
